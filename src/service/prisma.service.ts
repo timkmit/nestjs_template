@@ -13,10 +13,19 @@ export class PrismaService extends PrismaClient implements OnModuleInit, OnModul
 }
 
 @Injectable()
-export class PrismaUserService  {
+export class PrismaUserService {
   constructor(private prismaService: PrismaService) {}
 
   async findAll() {
-    return await this.prismaService.user.findMany()
+    return await this.prismaService.user.findMany();
+  }
+
+  async deleteUser(id: number) {
+    return await this.prismaService.user.delete({ where: { id } });
+  }
+
+  async createUser(userData) {
+    userData.id = parseInt(userData.id);
+    return await this.prismaService.user.create({ data: userData });
   }
 }

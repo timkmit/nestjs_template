@@ -7,8 +7,19 @@
     <h1>User List</h1>
     <ul>
       {{#each users}}
-        <li>ID: {{this.id}}, Name: {{this.name}}</li>
+        <li>
+          ID: {{this.id}}, Name: {{this.name}}
+          <a href="/users/{{this.id}}/delete">Удалить</a>
+        </li>
       {{/each}}
     </ul>
+
+    <h2>Добавить пользователя</h2>
+    <form method="post" action="/add-user">
+      <input type="text" name="id" placeholder="ID">
+      <input type="text" name="email" placeholder="Email">
+      <input type="text" name="name" placeholder="Имя пользователя">
+      <button type="submit">Добавить</button>
+    </form>
   </body>
 </html>
